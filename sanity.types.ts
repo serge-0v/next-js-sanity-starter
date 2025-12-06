@@ -16,13 +16,13 @@
 export type AllPosts = {
   _type: "all-posts";
   padding?: SectionPadding;
-  colorVariant?: "background" | "primary" | "secondary" | "card" | "accent" | "destructive" | "muted";
+  colorVariant?: ColorVariant;
 };
 
 export type FormNewsletter = {
   _type: "form-newsletter";
   padding?: SectionPadding;
-  colorVariant?: "background" | "primary" | "secondary" | "card" | "accent" | "destructive" | "muted";
+  colorVariant?: ColorVariant;
   stackAlign?: "left" | "center";
   consentText?: string;
   buttonText?: string;
@@ -32,7 +32,7 @@ export type FormNewsletter = {
 export type Faqs = {
   _type: "faqs";
   padding?: SectionPadding;
-  colorVariant?: "background" | "primary" | "secondary" | "card" | "accent" | "destructive" | "muted";
+  colorVariant?: ColorVariant;
   faqs?: Array<{
     _ref: string;
     _type: "reference";
@@ -45,7 +45,7 @@ export type Faqs = {
 export type LogoCloud1 = {
   _type: "logo-cloud-1";
   padding?: SectionPadding;
-  colorVariant?: "background" | "primary" | "secondary" | "card" | "accent" | "destructive" | "muted";
+  colorVariant?: ColorVariant;
   title?: string;
   images?: Array<{
     asset?: {
@@ -66,61 +66,12 @@ export type LogoCloud1 = {
 export type Cta1 = {
   _type: "cta-1";
   padding?: SectionPadding;
-  colorVariant?: "background" | "primary" | "secondary" | "card" | "accent" | "destructive" | "muted";
+  colorVariant?: ColorVariant;
   sectionWidth?: "default" | "narrow";
   stackAlign?: "left" | "center";
   tagLine?: string;
   title?: string;
-  body?: Array<{
-    children?: Array<{
-      marks?: Array<string>;
-      text?: string;
-      _type: "span";
-      _key: string;
-    }>;
-    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "blockquote";
-    listItem?: "bullet" | "number";
-    markDefs?: Array<{
-      isExternal?: boolean;
-      internalLink?: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "page";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "post";
-      };
-      href?: string;
-      target?: boolean;
-      _type: "link";
-      _key: string;
-    }>;
-    level?: number;
-    _type: "block";
-    _key: string;
-  } | {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    alt?: string;
-    _type: "image";
-    _key: string;
-  } | {
-    videoId?: string;
-    _type: "youtube";
-    _key: string;
-  } | {
-    _key: string;
-  } & Code>;
+  body?: BlockContent;
   links?: Array<{
     _key: string;
   } & Link>;
@@ -130,62 +81,13 @@ export type Timelines1 = {
   _type: "timelines-1";
   title?: string;
   tagLine?: string;
-  body?: Array<{
-    children?: Array<{
-      marks?: Array<string>;
-      text?: string;
-      _type: "span";
-      _key: string;
-    }>;
-    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "blockquote";
-    listItem?: "bullet" | "number";
-    markDefs?: Array<{
-      isExternal?: boolean;
-      internalLink?: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "page";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "post";
-      };
-      href?: string;
-      target?: boolean;
-      _type: "link";
-      _key: string;
-    }>;
-    level?: number;
-    _type: "block";
-    _key: string;
-  } | {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    alt?: string;
-    _type: "image";
-    _key: string;
-  } | {
-    videoId?: string;
-    _type: "youtube";
-    _key: string;
-  } | {
-    _key: string;
-  } & Code>;
+  body?: BlockContent;
 };
 
 export type TimelineRow = {
   _type: "timeline-row";
   padding?: SectionPadding;
-  colorVariant?: "background" | "primary" | "secondary" | "card" | "accent" | "destructive" | "muted";
+  colorVariant?: ColorVariant;
   timelines?: Array<{
     _key: string;
   } & Timelines1>;
@@ -194,7 +96,7 @@ export type TimelineRow = {
 export type Carousel2 = {
   _type: "carousel-2";
   padding?: SectionPadding;
-  colorVariant?: "background" | "primary" | "secondary" | "card" | "accent" | "destructive" | "muted";
+  colorVariant?: ColorVariant;
   testimonial?: Array<{
     _ref: string;
     _type: "reference";
@@ -207,7 +109,7 @@ export type Carousel2 = {
 export type Carousel1 = {
   _type: "carousel-1";
   padding?: SectionPadding;
-  colorVariant?: "background" | "primary" | "secondary" | "card" | "accent" | "destructive" | "muted";
+  colorVariant?: ColorVariant;
   size?: "one" | "two" | "three";
   indicators?: "none" | "dots" | "count";
   images?: Array<{
@@ -229,7 +131,7 @@ export type Carousel1 = {
 export type GridRow = {
   _type: "grid-row";
   padding?: SectionPadding;
-  colorVariant?: "background" | "primary" | "secondary" | "card" | "accent" | "destructive" | "muted";
+  colorVariant?: ColorVariant;
   gridColumns?: "grid-cols-2" | "grid-cols-3" | "grid-cols-4";
   columns?: Array<{
     _key: string;
@@ -299,56 +201,7 @@ export type SplitInfo = {
     _type: "image";
   };
   title?: string;
-  body?: Array<{
-    children?: Array<{
-      marks?: Array<string>;
-      text?: string;
-      _type: "span";
-      _key: string;
-    }>;
-    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "blockquote";
-    listItem?: "bullet" | "number";
-    markDefs?: Array<{
-      isExternal?: boolean;
-      internalLink?: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "page";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "post";
-      };
-      href?: string;
-      target?: boolean;
-      _type: "link";
-      _key: string;
-    }>;
-    level?: number;
-    _type: "block";
-    _key: string;
-  } | {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    alt?: string;
-    _type: "image";
-    _key: string;
-  } | {
-    videoId?: string;
-    _type: "youtube";
-    _key: string;
-  } | {
-    _key: string;
-  } & Code>;
+  body?: BlockContent;
   tags?: Array<string>;
 };
 
@@ -380,56 +233,7 @@ export type SplitCard = {
   _type: "split-card";
   tagLine?: string;
   title?: string;
-  body?: Array<{
-    children?: Array<{
-      marks?: Array<string>;
-      text?: string;
-      _type: "span";
-      _key: string;
-    }>;
-    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "blockquote";
-    listItem?: "bullet" | "number";
-    markDefs?: Array<{
-      isExternal?: boolean;
-      internalLink?: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "page";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "post";
-      };
-      href?: string;
-      target?: boolean;
-      _type: "link";
-      _key: string;
-    }>;
-    level?: number;
-    _type: "block";
-    _key: string;
-  } | {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    alt?: string;
-    _type: "image";
-    _key: string;
-  } | {
-    videoId?: string;
-    _type: "youtube";
-    _key: string;
-  } | {
-    _key: string;
-  } & Code>;
+  body?: BlockContent;
 };
 
 export type SplitCardsList = {
@@ -443,66 +247,17 @@ export type SplitContent = {
   _type: "split-content";
   sticky?: boolean;
   padding?: SectionPadding;
-  colorVariant?: "background" | "primary" | "secondary" | "card" | "accent" | "destructive" | "muted";
+  colorVariant?: ColorVariant;
   tagLine?: string;
   title?: string;
-  body?: Array<{
-    children?: Array<{
-      marks?: Array<string>;
-      text?: string;
-      _type: "span";
-      _key: string;
-    }>;
-    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "blockquote";
-    listItem?: "bullet" | "number";
-    markDefs?: Array<{
-      isExternal?: boolean;
-      internalLink?: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "page";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "post";
-      };
-      href?: string;
-      target?: boolean;
-      _type: "link";
-      _key: string;
-    }>;
-    level?: number;
-    _type: "block";
-    _key: string;
-  } | {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    alt?: string;
-    _type: "image";
-    _key: string;
-  } | {
-    videoId?: string;
-    _type: "youtube";
-    _key: string;
-  } | {
-    _key: string;
-  } & Code>;
+  body?: BlockContent;
   link?: Link;
 };
 
 export type SplitRow = {
   _type: "split-row";
   padding?: SectionPadding;
-  colorVariant?: "background" | "primary" | "secondary" | "card" | "accent" | "destructive" | "muted";
+  colorVariant?: ColorVariant;
   noGap?: boolean;
   splitColumns?: Array<{
     _key: string;
@@ -518,7 +273,7 @@ export type SplitRow = {
 export type SectionHeader = {
   _type: "section-header";
   padding?: SectionPadding;
-  colorVariant?: "background" | "primary" | "secondary" | "card" | "accent" | "destructive" | "muted";
+  colorVariant?: ColorVariant;
   sectionWidth?: "default" | "narrow";
   stackAlign?: "left" | "center";
   tagLine?: string;
@@ -530,56 +285,7 @@ export type Hero2 = {
   _type: "hero-2";
   tagLine?: string;
   title?: string;
-  body?: Array<{
-    children?: Array<{
-      marks?: Array<string>;
-      text?: string;
-      _type: "span";
-      _key: string;
-    }>;
-    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "blockquote";
-    listItem?: "bullet" | "number";
-    markDefs?: Array<{
-      isExternal?: boolean;
-      internalLink?: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "page";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "post";
-      };
-      href?: string;
-      target?: boolean;
-      _type: "link";
-      _key: string;
-    }>;
-    level?: number;
-    _type: "block";
-    _key: string;
-  } | {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    alt?: string;
-    _type: "image";
-    _key: string;
-  } | {
-    videoId?: string;
-    _type: "youtube";
-    _key: string;
-  } | {
-    _key: string;
-  } & Code>;
+  body?: BlockContent;
   links?: Array<{
     _key: string;
   } & Link>;
@@ -589,56 +295,7 @@ export type Hero1 = {
   _type: "hero-1";
   tagLine?: string;
   title?: string;
-  body?: Array<{
-    children?: Array<{
-      marks?: Array<string>;
-      text?: string;
-      _type: "span";
-      _key: string;
-    }>;
-    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "blockquote";
-    listItem?: "bullet" | "number";
-    markDefs?: Array<{
-      isExternal?: boolean;
-      internalLink?: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "page";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "post";
-      };
-      href?: string;
-      target?: boolean;
-      _type: "link";
-      _key: string;
-    }>;
-    level?: number;
-    _type: "block";
-    _key: string;
-  } | {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    alt?: string;
-    _type: "image";
-    _key: string;
-  } | {
-    videoId?: string;
-    _type: "youtube";
-    _key: string;
-  } | {
-    _key: string;
-  } & Code>;
+  body?: BlockContent;
   image?: {
     asset?: {
       _ref: string;
@@ -774,6 +431,22 @@ export type Settings = {
   };
   siteName?: string;
   copyright?: BlockContent;
+};
+
+export type SanityImageCrop = {
+  _type: "sanity.imageCrop";
+  top?: number;
+  bottom?: number;
+  left?: number;
+  right?: number;
+};
+
+export type SanityImageHotspot = {
+  _type: "sanity.imageHotspot";
+  x?: number;
+  y?: number;
+  height?: number;
+  width?: number;
 };
 
 export type Navigation = {
@@ -963,6 +636,12 @@ export type Author = {
   orderRank?: string;
 };
 
+export type Slug = {
+  _type: "slug";
+  current?: string;
+  source?: string;
+};
+
 export type Code = {
   _type: "code";
   language?: string;
@@ -997,20 +676,15 @@ export type SanityImageDimensions = {
   aspectRatio?: number;
 };
 
-export type SanityImageHotspot = {
-  _type: "sanity.imageHotspot";
-  x?: number;
-  y?: number;
-  height?: number;
-  width?: number;
-};
-
-export type SanityImageCrop = {
-  _type: "sanity.imageCrop";
-  top?: number;
-  bottom?: number;
-  left?: number;
-  right?: number;
+export type SanityImageMetadata = {
+  _type: "sanity.imageMetadata";
+  location?: Geopoint;
+  dimensions?: SanityImageDimensions;
+  palette?: SanityImagePalette;
+  lqip?: string;
+  blurHash?: string;
+  hasAlpha?: boolean;
+  isOpaque?: boolean;
 };
 
 export type SanityFileAsset = {
@@ -1033,6 +707,13 @@ export type SanityFileAsset = {
   path?: string;
   url?: string;
   source?: SanityAssetSourceData;
+};
+
+export type SanityAssetSourceData = {
+  _type: "sanity.assetSourceData";
+  name?: string;
+  id?: string;
+  url?: string;
 };
 
 export type SanityImageAsset = {
@@ -1058,17 +739,6 @@ export type SanityImageAsset = {
   source?: SanityAssetSourceData;
 };
 
-export type SanityImageMetadata = {
-  _type: "sanity.imageMetadata";
-  location?: Geopoint;
-  dimensions?: SanityImageDimensions;
-  palette?: SanityImagePalette;
-  lqip?: string;
-  blurHash?: string;
-  hasAlpha?: boolean;
-  isOpaque?: boolean;
-};
-
 export type Geopoint = {
   _type: "geopoint";
   lat?: number;
@@ -1076,20 +746,7 @@ export type Geopoint = {
   alt?: number;
 };
 
-export type Slug = {
-  _type: "slug";
-  current?: string;
-  source?: string;
-};
-
-export type SanityAssetSourceData = {
-  _type: "sanity.assetSourceData";
-  name?: string;
-  id?: string;
-  url?: string;
-};
-
-export type AllSanitySchemaTypes = AllPosts | FormNewsletter | Faqs | LogoCloud1 | Cta1 | Timelines1 | TimelineRow | Carousel2 | Carousel1 | GridRow | GridPost | PricingCard | GridCard | SplitInfo | SplitInfoList | SplitImage | SplitCard | SplitCardsList | SplitContent | SplitRow | SectionHeader | Hero2 | Hero1 | SectionPadding | ButtonVariant | ColorVariant | Link | BlockContent | Settings | Navigation | Testimonial | Faq | Category | Page | Post | Author | Code | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageHotspot | SanityImageCrop | SanityFileAsset | SanityImageAsset | SanityImageMetadata | Geopoint | Slug | SanityAssetSourceData;
+export type AllSanitySchemaTypes = AllPosts | FormNewsletter | Faqs | LogoCloud1 | Cta1 | Timelines1 | TimelineRow | Carousel2 | Carousel1 | GridRow | GridPost | PricingCard | GridCard | SplitInfo | SplitInfoList | SplitImage | SplitCard | SplitCardsList | SplitContent | SplitRow | SectionHeader | Hero2 | Hero1 | SectionPadding | ButtonVariant | ColorVariant | Link | BlockContent | Settings | SanityImageCrop | SanityImageHotspot | Navigation | Testimonial | Faq | Category | Page | Post | Author | Slug | Code | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageMetadata | SanityFileAsset | SanityAssetSourceData | SanityImageAsset | Geopoint;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./app/sitemap.ts
 // Variable: pagesQuery
@@ -1128,12 +785,12 @@ export type PAGE_QUERYResult = {
     _type: "all-posts";
     _key: string;
     padding: SectionPadding | null;
-    colorVariant: "accent" | "background" | "card" | "destructive" | "muted" | "primary" | "secondary" | null;
+    colorVariant: ColorVariant | null;
   } | {
     _type: "carousel-1";
     _key: string;
     padding: SectionPadding | null;
-    colorVariant: "accent" | "background" | "card" | "destructive" | "muted" | "primary" | "secondary" | null;
+    colorVariant: ColorVariant | null;
     size: "one" | "three" | "two" | null;
     orientation: null;
     indicators: "count" | "dots" | "none" | null;
@@ -1161,7 +818,7 @@ export type PAGE_QUERYResult = {
     _type: "carousel-2";
     _key: string;
     padding: SectionPadding | null;
-    colorVariant: "accent" | "background" | "card" | "destructive" | "muted" | "primary" | "secondary" | null;
+    colorVariant: ColorVariant | null;
     testimonial: Array<{
       _id: string;
       name: string | null;
@@ -1254,7 +911,7 @@ export type PAGE_QUERYResult = {
     _type: "cta-1";
     _key: string;
     padding: SectionPadding | null;
-    colorVariant: "accent" | "background" | "card" | "destructive" | "muted" | "primary" | "secondary" | null;
+    colorVariant: ColorVariant | null;
     sectionWidth: "default" | "narrow" | null;
     stackAlign: "center" | "left" | null;
     tagLine: string | null;
@@ -1347,7 +1004,7 @@ export type PAGE_QUERYResult = {
     _type: "faqs";
     _key: string;
     padding: SectionPadding | null;
-    colorVariant: "accent" | "background" | "card" | "destructive" | "muted" | "primary" | "secondary" | null;
+    colorVariant: ColorVariant | null;
     faqs: Array<{
       _id: string;
       title: string | null;
@@ -1420,7 +1077,7 @@ export type PAGE_QUERYResult = {
     _type: "form-newsletter";
     _key: string;
     padding: SectionPadding | null;
-    colorVariant: "accent" | "background" | "card" | "destructive" | "muted" | "primary" | "secondary" | null;
+    colorVariant: ColorVariant | null;
     stackAlign: "center" | "left" | null;
     consentText: string | null;
     buttonText: string | null;
@@ -1429,7 +1086,7 @@ export type PAGE_QUERYResult = {
     _type: "grid-row";
     _key: string;
     padding: SectionPadding | null;
-    colorVariant: "accent" | "background" | "card" | "destructive" | "muted" | "primary" | "secondary" | null;
+    colorVariant: ColorVariant | null;
     gridColumns: "grid-cols-2" | "grid-cols-3" | "grid-cols-4" | null;
     columns: Array<{
       _type: "grid-card";
@@ -1739,7 +1396,7 @@ export type PAGE_QUERYResult = {
     _type: "logo-cloud-1";
     _key: string;
     padding: SectionPadding | null;
-    colorVariant: "accent" | "background" | "card" | "destructive" | "muted" | "primary" | "secondary" | null;
+    colorVariant: ColorVariant | null;
     title: string | null;
     images: Array<{
       asset: {
@@ -1765,7 +1422,7 @@ export type PAGE_QUERYResult = {
     _type: "section-header";
     _key: string;
     padding: SectionPadding | null;
-    colorVariant: "accent" | "background" | "card" | "destructive" | "muted" | "primary" | "secondary" | null;
+    colorVariant: ColorVariant | null;
     sectionWidth: "default" | "narrow" | null;
     stackAlign: "center" | "left" | null;
     tagLine: string | null;
@@ -1776,7 +1433,7 @@ export type PAGE_QUERYResult = {
     _type: "split-row";
     _key: string;
     padding: SectionPadding | null;
-    colorVariant: "accent" | "background" | "card" | "destructive" | "muted" | "primary" | "secondary" | null;
+    colorVariant: ColorVariant | null;
     noGap: boolean | null;
     splitColumns: Array<{
       _type: "split-cards-list";
@@ -1854,7 +1511,7 @@ export type PAGE_QUERYResult = {
       _key: string;
       sticky: boolean | null;
       padding: SectionPadding | null;
-      colorVariant: "accent" | "background" | "card" | "destructive" | "muted" | "primary" | "secondary" | null;
+      colorVariant: ColorVariant | null;
       tagLine: string | null;
       title: string | null;
       body: Array<{
@@ -2058,7 +1715,7 @@ export type PAGE_QUERYResult = {
     _type: "timeline-row";
     _key: string;
     padding: SectionPadding | null;
-    colorVariant: "accent" | "background" | "card" | "destructive" | "muted" | "primary" | "secondary" | null;
+    colorVariant: ColorVariant | null;
     timelines: Array<{
       title: string | null;
       tagLine: string | null;
