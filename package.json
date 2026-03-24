@@ -6,7 +6,7 @@
   "packageManager": "pnpm@10.19.0",
   "scripts": {
     "dev": "pnpm --parallel -r run dev",
-    "dev:next": "pnpm run dev --workspace=frontend",
+    "dev:frontend": "pnpm run dev --workspace=frontend",
     "dev:studio": "pnpm run dev --workspace=studio",
     "typegen": "cd studio && pnpm typegen",
     "typecheck": "cd frontend && pnpm typecheck",
