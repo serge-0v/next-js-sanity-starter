@@ -1,17 +1,23 @@
 ---
-description: 
-globs: 
+description:
+globs:
 alwaysApply: true
 ---
+
 ---
+
 description: Opinionated guidance for configuring Sanity Studio and authoring content with Schema UI Starter
-globs: **/*.{ts,tsx,js,jsx}
+globs: \*_/_.{ts,tsx,js,jsx}
 alwaysApply: false
+
 ---
+
 ## Positive affirmation
+
 You are a principal-level TypeScript and React engineer who writes best-practice, high performance code.
 
 ## Schema UI Architecture
+
 ### Component Structure
 
 - The Schema UI Starter uses a composable block-based architecture
@@ -26,7 +32,9 @@ You are a principal-level TypeScript and React engineer who writes best-practice
 ```ts
 // Example component map pattern
 const componentMap: {
-  [K in ChildType["_type"]]: React.ComponentType<Extract<ChildType, { _type: K }>>;
+  [K in ChildType["_type"]]: React.ComponentType<
+    Extract<ChildType, { _type: K }>
+  >;
 } = {
   "child-type-1": ChildComponent1,
   "child-type-2": ChildComponent2,
@@ -34,6 +42,7 @@ const componentMap: {
 ```
 
 ## Sanity Studio Schema Types
+
 ### Content modelling
 
 - Unless explicitly modelling web pages or app views, create content models for what things are, not what they look like in a front-end
@@ -154,7 +163,7 @@ defineField({
       ],
     },
   },
-})
+});
 ```
 
 ### React Component Implementation
@@ -169,12 +178,12 @@ defineField({
 // Example React component for a parent block
 // components/blocks/parent-component.tsx
 import { stegaClean } from "next-sanity";
-import { PAGE_QUERYResult } from "@/sanity.types";
+import { PAGE_QUERY_RESULT } from "@/sanity.types";
 import SectionContainer from "@/components/blocks/section-container";
 import ChildComponent1 from "./child-component-1";
 import ChildComponent2 from "./child-component-2";
 
-type Block = NonNullable<NonNullable<PAGE_QUERYResult>["blocks"]>[number];
+type Block = NonNullable<NonNullable<PAGE_QUERY_RESULT>["blocks"]>[number];
 type ParentBlock = Extract<Block, { _type: "parent-block" }>;
 type ChildBlock = NonNullable<NonNullable<ParentBlock["children"]>[number]>;
 
@@ -202,7 +211,7 @@ export default function ParentBlock({
             const Component = componentMap[child._type];
             if (!Component) {
               console.warn(
-                `No component implemented for child type: ${child._type}`
+                `No component implemented for child type: ${child._type}`,
               );
               return <div data-type={child._type} key={child._key} />;
             }
@@ -224,14 +233,14 @@ export default function ParentBlock({
 ```ts
 // ./sanity/schemas/blocks/shared/block-content.ts
 
-import { defineField, defineType } from 'sanity'
+import { defineField, defineType } from "sanity";
 
 export default defineType({
-  title: 'Block content',
-  name: 'block-content',
-  type: 'array',
-  of: [defineArrayMember({ title: "Block", type: "block"})],
-})
+  title: "Block content",
+  name: "block-content",
+  type: "array",
+  of: [defineArrayMember({ title: "Block", type: "block" })],
+});
 ```
 
 ### Decorating schema types
@@ -254,6 +263,7 @@ When asked to write content:
 - NEVER include a `.` in the `_id` field of a document unless you need it to be private
 - NEVER include image references because you don't know what image documents exist
 - ALWAYS write images in this format below, replacing the document ID value to generate the same placeholder image
+
 ```JSON
 {"_type":"image","_sanityAsset":"image@https://picsum.photos/seed/[[REPLACE_WITH_DOCUMENT_ID]]/1920/1080"}
 ```
@@ -378,4 +388,4 @@ export const POSTS_SLUGS_QUERY = groq`*[_type == "post" && defined(slug)]{slug}`
 
 - ONLY write Types for responses if you cannot generate them with Sanity TypeGen
 - ALWAYS export a schema extraction first from inside of the Studio code-base with `npx sanity@latest typegen generate`
-- ALWAYS move that schema extraction file to the root of a front-end project before running `npx sanity@latest typegen generate` 
+- ALWAYS move that schema extraction file to the root of a front-end project before running `npx sanity@latest typegen generate`
