@@ -1,0 +1,78 @@
+name: Deploy Sanity Studio
+
+on:
+  push:
+    branches: [ master, develop ]
+    paths:
+      - 'studio/**'
+  workflow_dispatch: # Allow manual triggering
+
+jobs:
+  deploy-studio:
+    runs-on: ubuntu-latest
+    environment: ${{ github.ref_name == 'develop' && 'development' || 'Production' }}
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.19.0
+          
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+        
+      - name: Check required environment variables
+        run: |
+          if [ -z "${{ vars.SANITY_STUDIO_PREVIEW_URL }}" ]; then
+            echo "❌ SANITY_STUDIO_PREVIEW_URL environment variable is not set"
+            exit 1
+          fi
+          if [ -z "${{ vars.SANITY_STUDIO_PROJECT_ID }}" ]; then
+            echo "❌ SANITY_STUDIO_PROJECT_ID environment variable is not set"
+            exit 1
+          fi
+          if [ -z "${{ vars.SANITY_STUDIO_DATASET }}" ]; then
+            echo "❌ SANITY_STUDIO_DATASET environment variable is not set"
+            exit 1
+          fi
+          if [ -z "${{ vars.SANITY_STUDIO_HOSTNAME }}" ]; then
+            echo "❌ SANITY_STUDIO_HOSTNAME environment variable is not set"
+            exit 1
+          fi
+          if [ -z "${{ vars.SANITY_STUDIO_API_VERSION }}" ]; then
+            echo "❌ SANITY_STUDIO_API_VERSION environment variable is not set"
+            exit 1
+          fi
+          if [ -z "${{ vars.SANITY_STUDIO_APP_ID }}" ]; then
+            echo "❌ SANITY_STUDIO_APP_ID environment variable is not set"
+            exit 1
+          fi
+          if [ -z "${{ secrets.SANITY_AUTH_TOKEN }}" ]; then
+            echo "❌ SANITY_AUTH_TOKEN secret is not set"
+            exit 1
+          fi
+          echo "✅ All required variables and secrets are configured"
+          
+      - name: Deploy Sanity Studio
+        working-directory: ./studio
+        env:
+          SANITY_STUDIO_PREVIEW_URL: ${{ vars.SANITY_STUDIO_PREVIEW_URL }}
+          SANITY_STUDIO_PROJECT_ID: ${{ vars.SANITY_STUDIO_PROJECT_ID }}
+          SANITY_STUDIO_DATASET: ${{ vars.SANITY_STUDIO_DATASET }}
+          SANITY_STUDIO_HOSTNAME: ${{ vars.SANITY_STUDIO_HOSTNAME }}
+          SANITY_STUDIO_API_VERSION: ${{ vars.SANITY_STUDIO_API_VERSION }}
+          SANITY_STUDIO_APP_ID: ${{ vars.SANITY_STUDIO_APP_ID }}
+          SANITY_STUDIO_VERCEL_BYPASS_SECRET: ${{ secrets.SANITY_STUDIO_VERCEL_BYPASS_SECRET }}
+          SANITY_AUTH_TOKEN: ${{ secrets.SANITY_AUTH_TOKEN }}
+        run: |
+          echo "🚀 Starting Sanity Studio deployment..."
+          npx sanity deploy
+          echo "✅ Sanity Studio deployed successfully!" 

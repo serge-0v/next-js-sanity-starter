@@ -1,0 +1,46 @@
+{
+  "name": "studio",
+  "version": "2.0.0",
+  "private": true,
+  "packageManager": "pnpm@10.19.0",
+  "scripts": {
+    "dev": "sanity dev",
+    "start": "sanity start",
+    "build": "sanity build",
+    "deploy": "sanity deploy",
+    "typegen": "rm -rf schema.json && sanity schema extract && sanity typegen generate",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@portabletext/react": "^6.0.3",
+    "@sanity/code-input": "^7.0.12",
+    "@sanity/icons": "^3.7.4",
+    "@sanity/image-url": "^2.0.3",
+    "@sanity/orderable-document-list": "^1.5.1",
+    "@sanity/preview-url-secret": "^4.0.4",
+    "@sanity/ui": "^3.1.14",
+    "@sanity/vision": "^5.17.1",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "lucide-react": "^1.0.1",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
+    "react-player": "^3.4.0",
+    "sanity": "^5.17.1",
+    "sanity-plugin-iframe-pane": "^5.0.11",
+    "sanity-plugin-media": "^4.1.1",
+    "styled-components": "^6.3.12",
+    "tailwind-merge": "^3.5.0"
+  },
+  "devDependencies": {
+    "@sanity/client": "^7.20.0",
+    "@sanity/eslint-config-studio": "^6.0.0",
+    "@sanity/types": "^5.17.1",
+    "@types/node": "^25.5.0",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "dotenv": "^17.3.1",
+    "eslint": "^10.1.0",
+    "typescript": "^6.0.2"
+  }
+}
