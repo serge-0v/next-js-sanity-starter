@@ -28,7 +28,7 @@ const SANITY_STUDIO_PREVIEW_URL =
   process.env.SANITY_STUDIO_PREVIEW_URL || "http://localhost:3000";
 
 export default defineConfig({
-  title: "Schema UI",
+  title: "Schema UI: Starter",
   projectId,
   dataset,
   // Add and edit the content schema in the './sanity/schema' folder
