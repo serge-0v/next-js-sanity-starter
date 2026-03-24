@@ -4,7 +4,7 @@ This starter is a part of [Schema UI](https://schemaui.com) project, a comprehen
 
 **Monorepo:** The template now uses a **pnpm workspace** with a `frontend/` (Next.js) app and a `studio/` (Sanity Studio) app in one repository. Older guides referred to a single app folder; here, schemas and `sanity` CLI commands live under `studio/`, and the site lives under `frontend/`. Root scripts run both together (`pnpm dev`).
 
-![Screenshot of Sanity Studio using Presentation Tool to do Visual Editing](https://cdn.sanity.io/images/a03xrv11/production/e83fee6a672a9df53548878eccddc0f962d1cac8-1920x931.webp)
+![Screenshot of Sanity Studio using Content Agent](https://cdn.sanity.io/images/a03xrv11/schemaui-starter/2a4db6a79de3606c2669464dfee38a3dac7fdad1-1920x841.webp)
 
 [![Next.js][next-js]][next-js-url] [![Sanity][sanity]][sanity-url] [![React][react]][react-url] [![Typescript][typescript]][typescript-url] [![Tailwind][tailwind]][tailwind-url] [![Shadcn][shadcn]][shadcn-url]
 
