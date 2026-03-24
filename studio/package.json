@@ -1,7 +1,8 @@
 {
-  "name": "schemaui-mono",
-  "version": "1.0.0",
+  "name": "studio",
+  "version": "2.0.0",
   "private": true,
+  "packageManager": "pnpm@10.19.0",
   "scripts": {
     "dev": "sanity dev",
     "start": "sanity start",
