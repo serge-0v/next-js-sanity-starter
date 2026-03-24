@@ -1,6 +1,6 @@
 # Schema UI - Next.js Sanity Starter Template
 
-This starter is a part of [Schema UI](https://schemaui.com) project, a comprehensive page builder that provides production-ready React components with pre-built Sanity schemas and GROQ queries, enabling rapid development of content-driven websites with Sanity CMS and Next.js.
+This starter is a part of [Schema UI](https://schemaui.com) project, a comprehensive page builder that provides production-ready React components with pre-built Sanity schemas and GROQ queries, enabling rapid development of content-driven websites with Sanity CMS and Next.js. **Content Agent & MCP ready**.
 
 **Monorepo:** The template now uses a **pnpm workspace** with a `frontend/` (Next.js) app and a `studio/` (Sanity Studio) app in one repository. Older guides referred to a single app folder; here, schemas and `sanity` CLI commands live under `studio/`, and the site lives under `frontend/`. Root scripts run both together (`pnpm dev`).
 
