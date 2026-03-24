@@ -9,7 +9,7 @@ const previewSchemaTypes = ["page", "post", "contact"];
 
 export const defaultDocumentNode: DefaultDocumentNodeResolver = (
   S,
-  { schemaType }
+  { schemaType },
 ) => {
   // Add previews for specified schema types
   if (previewSchemaTypes.includes(schemaType)) {
@@ -39,7 +39,7 @@ export const defaultDocumentNode: DefaultDocumentNodeResolver = (
               }
 
               // Add iframe parameter to distinguish from presentation mode
-              return `${path}?iframe=true`;
+              return path;
             },
             draftMode: "/api/draft-mode/enable",
           },
