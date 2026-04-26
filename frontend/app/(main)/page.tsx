@@ -16,5 +16,5 @@ export default async function IndexPage() {
     return MissingSanityPage({ document: "page", slug: "index" });
   }
 
-  return <Blocks page={page} />;
+  return <Blocks blocks={page?.blocks ?? []} />;
 }

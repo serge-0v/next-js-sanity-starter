@@ -37,5 +37,5 @@ export default async function Page(props: {
     notFound();
   }
 
-  return <Blocks page={page} />;
+  return <Blocks blocks={page?.blocks ?? []} />;
 }

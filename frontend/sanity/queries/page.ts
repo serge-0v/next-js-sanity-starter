@@ -16,8 +16,6 @@ import { allPostsQuery } from "./all-posts";
 
 export const PAGE_QUERY = groq`
   *[_type == "page" && slug.current == $slug][0]{
-    _id,
-    _type,
     blocks[]{
       ${hero1Query},
       ${hero2Query},
