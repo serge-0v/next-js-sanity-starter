@@ -1,0 +1,14 @@
+---
+description: Use only free shadcnblocks components when working with the shadcnblocks MCP registry
+alwaysApply: true
+---
+
+# Free Shadcnblocks Only
+
+When using the shadcn MCP server or `@shadcnblocks` registry for this project, only use free components.
+
+- Do not select paid, Pro, Premium, or authentication-gated shadcnblocks items.
+- Treat `UNAUTHORIZED` responses from `https://shadcnblocks.com/r/{name}` as a signal that the item is not available for this project.
+- Prefer the official free source at `https://github.com/shadcnblocks/shadcn-ui-blocks`, which contains the free marketing blocks.
+- When adding one of these components, adapt it as a Sanity/Page-Builder block, not as a standalone React-only component.
+- For each new Page-Builder block, add the matching Sanity schema, GROQ query fragment, page schema registration, frontend block component, block mapping, and run TypeGen when implementation is complete.
