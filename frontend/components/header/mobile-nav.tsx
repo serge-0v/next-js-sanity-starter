@@ -11,7 +11,7 @@ import { Button, buttonVariants } from "@/components/ui/button";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import Logo from "@/components/logo";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AlignRight } from "lucide-react";
 import { SETTINGS_QUERY_RESULT, NAVIGATION_QUERY_RESULT } from "@/sanity.types";
 
@@ -24,7 +24,15 @@ export default function MobileNav({
   navigation: NAVIGATION_QUERY_RESULT;
   settings: SETTINGS_QUERY_RESULT;
 }) {
+  const [mounted, setMounted] = useState(false);
   const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
+
   return (
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger asChild>

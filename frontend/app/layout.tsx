@@ -9,6 +9,9 @@ const isProduction = process.env.NEXT_PUBLIC_SITE_ENV === "production";
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL!),
+  icons: {
+    icon: "/favicon.ico",
+  },
   title: {
     template: "%s | Schema UI",
     default: "Sanity Next.js Website | Schema UI",
@@ -40,7 +43,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <link rel="icon" href="/favicon.ico" />
       <body
         className={cn(
           "min-h-screen bg-background font-sans antialiased overscroll-none",

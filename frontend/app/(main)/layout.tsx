@@ -1,7 +1,6 @@
 import Header from "@/components/header";
 import Footer from "@/components/footer";
-import { DisableDraftMode } from "@/components/disable-draft-mode";
-import { VisualEditing } from "next-sanity/visual-editing";
+import { SanityDraftMode } from "@/components/sanity-draft-mode";
 import { draftMode } from "next/headers";
 import { SanityLive } from "@/sanity/lib/live";
 
@@ -10,17 +9,14 @@ export default async function MainLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const { isEnabled: isDraftModeEnabled } = await draftMode();
+
   return (
     <>
       <Header />
       <main>{children}</main>
-      <SanityLive />
-      {(await draftMode()).isEnabled && (
-        <>
-          <DisableDraftMode />
-          <VisualEditing />
-        </>
-      )}
+      {!isDraftModeEnabled && <SanityLive />}
+      {isDraftModeEnabled && <SanityDraftMode />}
       <Footer />
     </>
   );

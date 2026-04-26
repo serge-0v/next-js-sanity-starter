@@ -51,13 +51,15 @@ function Carousel({
   children,
   ...props
 }: React.ComponentProps<"div"> & CarouselProps) {
-  const [carouselRef, api] = useEmblaCarousel(
-    {
+  const carouselOptions = React.useMemo<CarouselOptions>(
+    () => ({
       ...opts,
       axis: orientation === "horizontal" ? "x" : "y",
-    },
-    plugins
+    }),
+    [opts, orientation]
   );
+
+  const [carouselRef, api] = useEmblaCarousel(carouselOptions, plugins);
   const [canScrollPrev, setCanScrollPrev] = React.useState(false);
   const [canScrollNext, setCanScrollNext] = React.useState(false);
 
@@ -100,7 +102,8 @@ function Carousel({
     api.on("select", onSelect);
 
     return () => {
-      api?.off("select", onSelect);
+      api.off("reInit", onSelect);
+      api.off("select", onSelect);
     };
   }, [api, onSelect]);
 
@@ -242,19 +245,29 @@ function CarouselDots({
   const [selectedIndex, setSelectedIndex] = React.useState(0);
   const [slideCount, setSlideCount] = React.useState(0);
 
+  const onSelect = React.useCallback((api: CarouselApi) => {
+    if (!api) return;
+    setSelectedIndex(api.selectedScrollSnap());
+  }, []);
+
+  const onReInit = React.useCallback((api: CarouselApi) => {
+    if (!api) return;
+    setSlideCount(api.scrollSnapList().length);
+    setSelectedIndex(api.selectedScrollSnap());
+  }, []);
+
   React.useEffect(() => {
     if (!api) return;
 
-    setSlideCount(api.scrollSnapList().length);
-
-    api.on("select", () => {
-      setSelectedIndex(api.selectedScrollSnap());
-    });
+    onReInit(api);
+    api.on("reInit", onReInit);
+    api.on("select", onSelect);
 
     return () => {
-      api?.off("select", () => {});
+      api.off("reInit", onReInit);
+      api.off("select", onSelect);
     };
-  }, [api]);
+  }, [api, onReInit, onSelect]);
 
   const goToSlide = (index: number) => {
     api?.scrollTo(index);
@@ -303,19 +316,29 @@ function CarouselCounter({
   const [selectedIndex, setSelectedIndex] = React.useState(0);
   const [slideCount, setSlideCount] = React.useState(0);
 
+  const onSelect = React.useCallback((api: CarouselApi) => {
+    if (!api) return;
+    setSelectedIndex(api.selectedScrollSnap());
+  }, []);
+
+  const onReInit = React.useCallback((api: CarouselApi) => {
+    if (!api) return;
+    setSlideCount(api.scrollSnapList().length);
+    setSelectedIndex(api.selectedScrollSnap());
+  }, []);
+
   React.useEffect(() => {
     if (!api) return;
 
-    setSlideCount(api.scrollSnapList().length);
-
-    api.on("select", () => {
-      setSelectedIndex(api.selectedScrollSnap());
-    });
+    onReInit(api);
+    api.on("reInit", onReInit);
+    api.on("select", onSelect);
 
     return () => {
-      api?.off("select", () => {});
+      api.off("reInit", onReInit);
+      api.off("select", onSelect);
     };
-  }, [api]);
+  }, [api, onReInit, onSelect]);
 
   return (
     <div

@@ -2,7 +2,7 @@ import Link from "next/link";
 import Logo from "@/components/logo";
 import MobileNav from "@/components/header/mobile-nav";
 import DesktopNav from "@/components/header/desktop-nav";
-import { ModeToggle } from "@/components/menu-toggle";
+import { ModeToggleClient } from "@/components/menu-toggle-client";
 import { fetchSanitySettings, fetchSanityNavigation } from "@/sanity/lib/fetch";
 
 export default async function Header() {
@@ -16,10 +16,10 @@ export default async function Header() {
         </Link>
         <div className="hidden xl:flex gap-7 items-center justify-between">
           <DesktopNav navigation={navigation} />
-          <ModeToggle />
+          <ModeToggleClient />
         </div>
         <div className="flex items-center xl:hidden">
-          <ModeToggle />
+          <ModeToggleClient />
           <MobileNav navigation={navigation} settings={settings} />
         </div>
       </div>
