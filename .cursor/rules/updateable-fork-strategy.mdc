@@ -1,0 +1,30 @@
+---
+description: Keep the starter updateable across upstream, base clone, and customer layers
+alwaysApply: true
+---
+
+# Updateable Fork Strategy
+
+Treat this repository as the middle layer in a three-level development model:
+
+1. Original repo: the upstream Schema UI starter that may continue to receive updates.
+2. Clone/base repo: this repository, which must stay updateable from the original repo and serve as the reusable foundation for all customer projects.
+3. Customer layer: customer-specific changes such as branding, stylesheets, copy, domains, integrations, and one-off behavior.
+
+When making changes:
+
+- Keep base-repo changes generic, reusable, and independent of any single customer.
+- Do not hardcode project IDs, tokens, hostnames, customer names, domains, local paths, brand colors, or customer copy in commitable base code.
+- Put environment-specific values in env files or documented configuration, not in shared source files.
+- Prefer extension points, configuration, CSS variables, theme files, or customer override files for customer-specific behavior.
+- Minimize edits to upstream-heavy starter files unless the change is clearly reusable for all customers.
+- If a customer-specific request would touch shared starter code, first decide whether it belongs in the base repo or should be isolated at the customer layer.
+- Keep Sanity changes compatible with the existing schema/query/component pattern so the base repo remains maintainable and typegen-friendly.
+- After schema or GROQ changes, preserve the workflow from `studio/schemas/**` to `frontend/sanity/queries/**` to `frontend/sanity.types.ts` via `pnpm typegen`.
+- Favor small, well-scoped changes that reduce future merge conflicts with the original repo.
+
+Before implementing a non-trivial change, classify it as one of:
+
+- Upstream-compatible improvement: suitable for the clone/base repo and potentially upstream.
+- Base-only improvement: reusable for all customer projects but not necessarily upstream.
+- Customer-specific customization: should be isolated outside the reusable base whenever possible.

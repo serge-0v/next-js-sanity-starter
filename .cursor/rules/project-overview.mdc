@@ -1,0 +1,19 @@
+---
+description: Persistent project context for the Schema UI Next.js Sanity Starter
+alwaysApply: true
+---
+
+# Project Overview
+
+This repository is a pnpm monorepo for the Schema UI Next.js + Sanity Starter Template.
+
+- `frontend/` is the public website: a Next.js App Router app using React, TypeScript, Tailwind CSS, Radix/shadcn-style UI components, `next-sanity`, Portable Text, and Resend for the optional newsletter form.
+- `studio/` is the Sanity Studio app: it owns the content schemas, Studio structure, Presentation/preview setup, Vision, media tooling, and Sanity TypeGen configuration.
+- Content is modeled in Sanity as pages, posts, authors, categories, FAQs, testimonials, navigation, settings, and reusable page-builder blocks.
+- The website renders Sanity `page` documents by fetching GROQ queries from `frontend/sanity/queries/` and mapping each block `_type` to a React component in `frontend/components/blocks/index.tsx`.
+- Schema and frontend block implementations are intentionally paired: a Sanity schema block in `studio/schemas/blocks/**` should usually have a matching query fragment in `frontend/sanity/queries/**` and React component in `frontend/components/blocks/**`.
+- Type safety relies on Sanity TypeGen. After changing schemas or GROQ queries, run `pnpm typegen` from the repository root.
+- Run both apps from the repository root with `pnpm dev`; use `pnpm dev:frontend` or `pnpm dev:studio` for a single workspace.
+- Deploy the public site with Vercel using `frontend` as the project root. Deploy Studio separately with `sanity deploy` from `studio/` or the repository's Studio deploy workflow.
+
+Prefer pnpm workspace commands from the repository root unless a command specifically needs to run inside `frontend/` or `studio/`.
