@@ -6,11 +6,11 @@
   "packageManager": "pnpm@10.19.0",
   "scripts": {
     "dev": "pnpm --parallel -r run dev",
-    "dev:frontend": "pnpm run dev --workspace=frontend",
-    "dev:studio": "pnpm run dev --workspace=studio",
-    "typegen": "cd studio && pnpm typegen",
-    "typecheck": "cd frontend && pnpm typecheck",
-    "export": "cd studio && sanity dataset export production sample-data.tar.gz"
+    "dev:frontend": "pnpm --filter frontend dev",
+    "dev:studio": "pnpm --filter studio dev",
+    "typegen": "pnpm --filter studio typegen",
+    "typecheck": "pnpm --filter frontend typecheck",
+    "export": "pnpm --filter studio exec sanity dataset export production sample-data.tar.gz"
   },
   "homepage": "https://www.schemaui.com/"
 }
