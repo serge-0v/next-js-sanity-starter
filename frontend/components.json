@@ -18,5 +18,7 @@
     "hooks": "@/hooks"
   },
   "iconLibrary": "lucide",
-  "registries": {}
+  "registries": {
+    "@shadcnblocks": "https://shadcnblocks.com/r/{name}"
+  }
 }
