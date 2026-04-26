@@ -12,8 +12,13 @@ import LogoCloud1 from "@/components/blocks/logo-cloud/logo-cloud-1";
 import FAQs from "@/components/blocks/faqs";
 import FormNewsletter from "@/components/blocks/forms/newsletter";
 import AllPosts from "@/components/blocks/all-posts";
+import VisualEditingBlocks from "@/components/blocks/visual-editing-blocks";
 
 type Block = NonNullable<NonNullable<PAGE_QUERY_RESULT>["blocks"]>[number];
+type PageWithVisualEditing = NonNullable<PAGE_QUERY_RESULT> & {
+  _id?: string;
+  _type?: string;
+};
 
 const componentMap: {
   [K in Block["_type"]]: React.ComponentType<Extract<Block, { _type: K }>>;
@@ -33,20 +38,31 @@ const componentMap: {
   "all-posts": AllPosts,
 };
 
-export default function Blocks({ blocks }: { blocks: Block[] }) {
+export default function Blocks({ page }: { page: PageWithVisualEditing }) {
+  const blocks = page.blocks ?? [];
+  const renderedBlocks = blocks.map((block) => {
+    const Component = componentMap[block._type];
+    if (!Component) {
+      // Fallback for development/debugging of new component types
+      console.warn(`No component implemented for block type: ${block._type}`);
+      return {
+        key: block._key,
+        node: <div data-type={block._type} />,
+      };
+    }
+
+    return {
+      key: block._key,
+      node: <Component {...(block as any)} />,
+    };
+  });
+
   return (
-    <>
-      {blocks?.map((block) => {
-        const Component = componentMap[block._type];
-        if (!Component) {
-          // Fallback for development/debugging of new component types
-          console.warn(
-            `No component implemented for block type: ${block._type}`,
-          );
-          return <div data-type={block._type} key={block._key} />;
-        }
-        return <Component {...(block as any)} key={block._key} />;
-      })}
-    </>
+    <VisualEditingBlocks
+      blocks={blocks.map(({ _key, _type }) => ({ _key, _type }))}
+      documentId={page._id ?? ""}
+      documentType={page._type ?? "page"}
+      renderedBlocks={renderedBlocks}
+    />
   );
 }
