@@ -9,7 +9,6 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import SectionContainer from "@/components/ui/section-container";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { toast } from "sonner";
@@ -49,7 +48,6 @@ export default function FormNewsletter({
   });
 
   const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
     defaultValues: {
       email: "",
     },
@@ -87,7 +85,18 @@ export default function FormNewsletter({
   );
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    await handleSend(values);
+    const parsedValues = formSchema.safeParse(values);
+    if (!parsedValues.success) {
+      const firstIssue = parsedValues.error.issues[0];
+      const field = firstIssue?.path[0];
+
+      if (field === "email") {
+        form.setError("email", { type: "manual", message: firstIssue.message });
+      }
+      return;
+    }
+
+    await handleSend(parsedValues.data);
   }
 
   const color = stegaClean(colorVariant);
