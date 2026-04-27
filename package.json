@@ -8,9 +8,6 @@
     "dev": "pnpm --parallel -r run dev",
     "dev:frontend": "pnpm --filter frontend dev",
     "dev:studio": "pnpm --filter studio dev",
-    "env:local": "node scripts/switch-env.mjs local",
-    "env:deploy": "node scripts/switch-env.mjs deploy",
-    "env:show": "node -e \"const fs=require('node:fs');const p=['frontend/.env.local','studio/.env.local'];for (const f of p){const s=fs.existsSync(f)?'present':'missing';console.log(f+': '+s);}\"",
     "typegen": "pnpm --filter studio typegen",
     "typecheck": "pnpm --filter frontend typecheck",
     "export": "pnpm --filter studio exec sanity dataset export production sample-data.tar.gz"
