@@ -139,6 +139,28 @@ Deploy your website to Vercel:
 5. Copy the environment variables from `frontend/.env.local` and paste them to your Vercel project settings. Vercel supports pasting all variables at once. Include `NEXT_PUBLIC_STUDIO_URL` pointing at your hosted Studio URL (no trailing slash).
 6. Deploy
 
+Manual deploy from this repo (frontend only):
+
+1. Authenticate and link the project once (run from repo root):
+
+```bash
+npx vercel login
+npx vercel link
+```
+
+2. Run deploy commands from the repo root:
+
+```bash
+pnpm deploy:web:preview
+pnpm deploy:web:prod
+```
+
+Optional: switch env templates to deploy mode before production deploy:
+
+```bash
+pnpm deploy:web:prod:with-env
+```
+
 #### 3. Deploy Sanity Studio (`sanity deploy`)
 
 Recommended: host Studio on `*.sanity.studio`.

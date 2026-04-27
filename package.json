@@ -8,6 +8,9 @@
     "dev": "pnpm --parallel -r run dev",
     "dev:frontend": "pnpm --filter frontend dev",
     "dev:studio": "pnpm --filter studio dev",
+    "deploy:web:preview": "npx vercel deploy",
+    "deploy:web:prod": "npx vercel deploy --prod",
+    "deploy:web:prod:with-env": "pnpm env:deploy && npx vercel deploy --prod",
     "typegen": "pnpm --filter studio typegen",
     "typecheck": "pnpm --filter frontend typecheck",
     "export": "pnpm --filter studio exec sanity dataset export production sample-data.tar.gz"
