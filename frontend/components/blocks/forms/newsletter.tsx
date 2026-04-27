@@ -13,7 +13,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { toast } from "sonner";
-import { useCallback } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Loader2 } from "lucide-react";
 import { stegaClean } from "next-sanity";
 import { PAGE_QUERY_RESULT } from "@/sanity.types";
@@ -30,6 +30,12 @@ export default function FormNewsletter({
   buttonText,
   successMessage,
 }: FormNewsletterProps) {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   // form validation schema
   const formSchema = z.object({
     email: z
@@ -85,6 +91,8 @@ export default function FormNewsletter({
   }
 
   const color = stegaClean(colorVariant);
+
+  if (!mounted) return null;
 
   return (
     <SectionContainer color={color} padding={padding}>

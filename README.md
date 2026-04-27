@@ -93,6 +93,32 @@ pnpm dev:studio  # studio only
 
 Set `NEXT_PUBLIC_STUDIO_URL` in `frontend/.env.local` to `http://localhost:3333` locally, and `SANITY_STUDIO_PREVIEW_URL` in `studio/.env.local` to `http://localhost:3000`, so draft mode and Presentation previews resolve correctly.
 
+### ENV mode switching (local vs deploy)
+
+If you want to avoid manually editing `.env.local` before every local run or Studio deploy, use the built-in env switcher:
+
+```bash
+pnpm env:local
+pnpm env:deploy
+pnpm env:show
+```
+
+- `pnpm env:local` copies `frontend/.env.local.template` and `studio/.env.local.template` into active `.env.local` files.
+- `pnpm env:deploy` copies `frontend/.env.deploy.template` and `studio/.env.deploy.template` into active `.env.local` files.
+- Keep real production/runtime secrets in Vercel/Sanity environment settings. Templates should stay placeholder-based.
+
+Recommended daily flow:
+
+```bash
+# local development
+pnpm env:local
+pnpm dev
+
+# deploy Sanity Studio from local CLI
+pnpm env:deploy
+pnpm --filter studio deploy
+```
+
 ### Adding content with Sanity
 
 #### 1. Import Sample Data (Optional)
@@ -136,14 +162,14 @@ Deploy your website to Vercel:
 2. Push your code to GitHub
 3. Create a [new Vercel project](https://vercel.com/new)
 4. Connect your GitHub repository and import the project. For this monorepo, set **Root Directory** to `frontend`.
-5. Copy the environment variables from `frontend/.env.local` and paste them to your Vercel project settings. Vercel supports pasting all variables at once. Include `NEXT_PUBLIC_STUDIO_URL` pointing at your hosted Studio URL (no trailing slash).
+5. Copy the environment variables from `frontend/.env.deploy.template` (or your deploy-mode `.env.local`) and paste them to your Vercel project settings. Vercel supports pasting all variables at once. Include `NEXT_PUBLIC_STUDIO_URL` pointing at your hosted Studio URL (no trailing slash).
 6. Deploy
 
 #### 3. Deploy Sanity Studio (`sanity deploy`)
 
 Recommended: host Studio on `*.sanity.studio`.
 
-1. Set production values in `studio/.env.local` (or in CI — see below).
+1. Run `pnpm env:deploy` in the repo root to switch `studio/.env.local` to deploy-mode values (or provide vars in CI — see below).
 2. From `studio`:
 
 ```bash
