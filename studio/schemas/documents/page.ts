@@ -51,6 +51,9 @@ export default defineType({
         { type: "cta-1" },
         { type: "community-1" },
         { type: "logo-cloud-1" },
+        { type: "trust-strip-1" },
+        { type: "about-3" },
+        { type: "footer-2" },
         { type: "faqs" },
         { type: "form-newsletter" },
         { type: "all-posts" },
@@ -67,6 +70,21 @@ export default defineType({
               name: "logo-cloud",
               title: "Logo Cloud",
               of: ["logo-cloud-1"],
+            },
+            {
+              name: "trust-strip",
+              title: "Trust Strip",
+              of: ["trust-strip-1"],
+            },
+            {
+              name: "about",
+              title: "About",
+              of: ["about-3"],
+            },
+            {
+              name: "footer",
+              title: "Footer",
+              of: ["footer-2"],
             },
             {
               name: "section-header",

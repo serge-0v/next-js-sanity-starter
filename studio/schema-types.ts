@@ -36,6 +36,9 @@ import timelinesOne from "./schemas/blocks/timeline/timelines-1";
 import cta1 from "./schemas/blocks/cta/cta-1";
 import community1 from "./schemas/blocks/community/community-1";
 import logoCloud1 from "./schemas/blocks/logo-cloud/logo-cloud-1";
+import trustStrip1 from "./schemas/blocks/trust-strip/trust-strip-1";
+import about3 from "./schemas/blocks/about/about-3";
+import footer2 from "./schemas/blocks/footer/footer-2";
 import faqs from "./schemas/blocks/faqs";
 import newsletter from "./schemas/blocks/forms/newsletter";
 import allPosts from "./schemas/blocks/all-posts";
@@ -78,6 +81,9 @@ export const schemaTypes = [
   cta1,
   community1,
   logoCloud1,
+  trustStrip1,
+  about3,
+  footer2,
   faqs,
   newsletter,
   allPosts,

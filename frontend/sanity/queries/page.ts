@@ -11,6 +11,9 @@ import { timelineQuery } from "./timeline";
 import { cta1Query } from "./cta/cta-1";
 import { community1Query } from "./community/community-1";
 import { logoCloud1Query } from "./logo-cloud/logo-cloud-1";
+import { trustStrip1Query } from "./trust-strip/trust-strip-1";
+import { about3Query } from "./about/about-3";
+import { footer2Query } from "./footer/footer-2";
 import { faqsQuery } from "./faqs";
 import { formNewsletterQuery } from "./forms/newsletter";
 import { allPostsQuery } from "./all-posts";
@@ -29,6 +32,9 @@ export const PAGE_QUERY = groq`
       ${cta1Query},
       ${community1Query},
       ${logoCloud1Query},
+      ${trustStrip1Query},
+      ${about3Query},
+      ${footer2Query},
       ${faqsQuery},
       ${formNewsletterQuery},
       ${allPostsQuery},

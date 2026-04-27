@@ -10,6 +10,9 @@ import TimelineRow from "@/components/blocks/timeline/timeline-row";
 import Cta1 from "@/components/blocks/cta/cta-1";
 import Community1 from "@/components/blocks/community/community-1";
 import LogoCloud1 from "@/components/blocks/logo-cloud/logo-cloud-1";
+import TrustStrip1 from "@/components/blocks/trust-strip/trust-strip-1";
+import About3 from "@/components/blocks/about/about-3";
+import Footer2 from "@/components/blocks/footer/footer-2";
 import FAQs from "@/components/blocks/faqs";
 import FormNewsletter from "@/components/blocks/forms/newsletter";
 import AllPosts from "@/components/blocks/all-posts";
@@ -30,6 +33,9 @@ const componentMap: {
   "cta-1": Cta1,
   "community-1": Community1,
   "logo-cloud-1": LogoCloud1,
+  "trust-strip-1": TrustStrip1,
+  "about-3": About3,
+  "footer-2": Footer2,
   faqs: FAQs,
   "form-newsletter": FormNewsletter,
   "all-posts": AllPosts,
