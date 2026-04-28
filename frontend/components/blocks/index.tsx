@@ -19,9 +19,7 @@ import AllPosts from "@/components/blocks/all-posts";
 
 type Block = NonNullable<NonNullable<PAGE_QUERY_RESULT>["blocks"]>[number];
 
-const componentMap: {
-  [K in Block["_type"]]: React.ComponentType<Extract<Block, { _type: K }>>;
-} = {
+const componentMap: Record<string, React.ComponentType<any>> = {
   "hero-1": Hero1,
   "hero-2": Hero2,
   "section-header": SectionHeader,

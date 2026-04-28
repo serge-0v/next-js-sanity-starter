@@ -1,7 +1,6 @@
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
 import PortableTextRenderer from "@/components/portable-text-renderer";
 import { PAGE_QUERY_RESULT } from "@/sanity.types";
+import ActionLinkButton from "@/components/blocks/shared/action-link-button";
 
 type Hero2Props = Extract<
   NonNullable<NonNullable<PAGE_QUERY_RESULT>["blocks"]>[number],
@@ -29,15 +28,14 @@ export default function Hero2({ tagLine, title, body, links }: Hero2Props) {
       {links && links.length > 0 && (
         <div className="mt-10 flex flex-wrap gap-4 justify-center animate-fade-up [animation-delay:400ms] opacity-0">
           {links.map((link) => (
-            <Button key={link.title} variant={link?.buttonVariant} asChild>
-              <Link
-                href={link.href || "#"}
-                target={link.target ? "_blank" : undefined}
-                rel={link.target ? "noopener" : undefined}
-              >
-                {link.title}
-              </Link>
-            </Button>
+            <ActionLinkButton
+              key={link._key ?? link.title}
+              title={link.title}
+              href={link.href}
+              target={link.target}
+              action={link.action}
+              variant={link.buttonVariant}
+            />
           ))}
         </div>
       )}

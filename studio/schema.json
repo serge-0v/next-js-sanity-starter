@@ -2595,6 +2595,23 @@
             "name": "button-variant"
           },
           "optional": true
+        },
+        "action": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "union",
+            "of": [
+              {
+                "type": "string",
+                "value": "none"
+              },
+              {
+                "type": "string",
+                "value": "drFlexToggleAppointments"
+              }
+            ]
+          },
+          "optional": true
         }
       }
     }

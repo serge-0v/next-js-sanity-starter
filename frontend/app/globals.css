@@ -176,7 +176,7 @@
 }
 
 @layer base {
-  * {
+  *:where(:not(#dr-flex-embed-holder, #dr-flex-embed-holder *)) {
     @apply border-border outline-ring/50;
   }
   body {
@@ -238,3 +238,4 @@
     }
   }
 }
+

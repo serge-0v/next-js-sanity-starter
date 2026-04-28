@@ -1,16 +1,38 @@
 import Image from "next/image";
-import Link from "next/link";
 
-import { PAGE_QUERY_RESULT } from "@/sanity.types";
 import { urlFor } from "@/sanity/lib/image";
 import PortableTextRenderer from "@/components/portable-text-renderer";
-import { Button } from "@/components/ui/button";
 import SectionContainer from "@/components/ui/section-container";
+import ActionLinkButton from "@/components/blocks/shared/action-link-button";
 
-type About3Props = Extract<
-  NonNullable<NonNullable<PAGE_QUERY_RESULT>["blocks"]>[number],
-  { _type: "about-3" }
->;
+type About3Link = {
+  _key: string;
+  title?: string | null;
+  href?: string | null;
+  target?: boolean | null;
+  action?: string | null;
+  buttonVariant?:
+    | "default"
+    | "destructive"
+    | "outline"
+    | "secondary"
+    | "ghost"
+    | "link"
+    | null;
+};
+
+type About3Props = {
+  padding?: { top?: boolean | null; bottom?: boolean | null } | null;
+  colorVariant?: string | null;
+  tagLine?: string | null;
+  title?: string | null;
+  body?: any;
+  image?: {
+    alt?: string | null;
+    asset?: { url?: string | null } | null;
+  } | null;
+  links?: About3Link[] | null;
+};
 
 export default function About3({
   padding,
@@ -22,7 +44,7 @@ export default function About3({
   links,
 }: About3Props) {
   return (
-    <SectionContainer color={colorVariant} padding={padding}>
+    <SectionContainer color={colorVariant as any} padding={padding as any}>
       <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2">
         <div className="space-y-4">
           {tagLine && (
@@ -31,19 +53,18 @@ export default function About3({
             </p>
           )}
           <h2>{title}</h2>
-          {body && <PortableTextRenderer value={body} />}
+          {body && <PortableTextRenderer value={body as any} />}
           {links && links.length > 0 && (
             <div className="mt-6 flex flex-wrap gap-3">
               {links.map((link) => (
-                <Button key={link._key} variant={link.buttonVariant} asChild>
-                  <Link
-                    href={link.href || "#"}
-                    target={link.target ? "_blank" : undefined}
-                    rel={link.target ? "noopener noreferrer" : undefined}
-                  >
-                    {link.title}
-                  </Link>
-                </Button>
+                <ActionLinkButton
+                  key={link._key}
+                  title={link.title}
+                  href={link.href}
+                  target={link.target}
+                  action={link.action}
+                  variant={link.buttonVariant}
+                />
               ))}
             </div>
           )}

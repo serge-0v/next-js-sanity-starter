@@ -1,9 +1,8 @@
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
 import PortableTextRenderer from "@/components/portable-text-renderer";
 import { PAGE_QUERY_RESULT } from "@/sanity.types";
+import ActionLinkButton from "@/components/blocks/shared/action-link-button";
 
 type Hero1Props = Extract<
   NonNullable<NonNullable<PAGE_QUERY_RESULT>["blocks"]>[number],
@@ -39,15 +38,13 @@ export default function Hero1({
           {links && links.length > 0 && (
             <div className="mt-10 flex flex-wrap gap-4 animate-fade-up [animation-delay:400ms] opacity-0">
               {links.map((link) => (
-                <Button key={link.title} variant={link?.buttonVariant} asChild>
-                  <Link
-                    href={link.href || "#"}
-                    target={link.target ? "_blank" : undefined}
-                    rel={link.target ? "noopener" : undefined}
-                  >
-                    {link.title}
-                  </Link>
-                </Button>
+                <ActionLinkButton
+                  key={link._key ?? link.title}
+                  title={link.title}
+                  href={link.href}
+                  target={link.target}
+                  variant={link.buttonVariant}
+                />
               ))}
             </div>
           )}

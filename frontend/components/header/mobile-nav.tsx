@@ -7,13 +7,13 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { Button, buttonVariants } from "@/components/ui/button";
-import Link from "next/link";
+import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import Logo from "@/components/logo";
 import { useEffect, useState } from "react";
 import { AlignRight } from "lucide-react";
 import { SETTINGS_QUERY_RESULT, NAVIGATION_QUERY_RESULT } from "@/sanity.types";
+import ActionLinkButton from "@/components/blocks/shared/action-link-button";
 
 type SanityLink = NonNullable<NAVIGATION_QUERY_RESULT[0]["links"]>[number];
 
@@ -59,21 +59,18 @@ export default function MobileNav({
             <ul className="list-none text-center space-y-3">
               {navigation[0]?.links?.map((navItem: SanityLink) => (
                 <li key={navItem._key}>
-                  <Link
+                  <ActionLinkButton
+                    title={navItem.title}
                     onClick={() => setOpen(false)}
                     href={navItem.href || "#"}
-                    target={navItem.target ? "_blank" : undefined}
-                    rel={navItem.target ? "noopener noreferrer" : undefined}
+                    target={navItem.target}
+                    action={navItem.action}
+                    variant={navItem.buttonVariant || "default"}
                     className={cn(
-                      buttonVariants({
-                        variant: navItem.buttonVariant || "default",
-                      }),
                       navItem.buttonVariant === "ghost" &&
                         "hover:text-decoration-none hover:opacity-50 text-lg p-0 h-auto hover:bg-transparent",
                     )}
-                  >
-                    {navItem.title}
-                  </Link>
+                  />
                 </li>
               ))}
             </ul>

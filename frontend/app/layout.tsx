@@ -4,6 +4,7 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
+import { getDrFlexScriptUrl, isDrFlexEnabled } from "@/lib/dr-flex";
 
 const isProduction = process.env.NEXT_PUBLIC_SITE_ENV === "production";
 
@@ -36,6 +37,9 @@ const fontSans = FontSans({
   variable: "--font-sans",
 });
 
+const drFlexScriptUrl =
+  isDrFlexEnabled() && getDrFlexScriptUrl() ? getDrFlexScriptUrl() : null;
+
 export default function RootLayout({
   children,
 }: {
@@ -43,6 +47,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        {drFlexScriptUrl && <script src={drFlexScriptUrl} />}
+      </head>
       <body
         className={cn(
           "min-h-screen bg-background font-sans antialiased overscroll-none",

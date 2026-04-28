@@ -45,5 +45,19 @@ export default defineType({
       type: "button-variant",
       title: "Button Variant",
     }),
+    defineField({
+      name: "action",
+      type: "string",
+      title: "Action",
+      description: "Optional action for special integrations such as Dr. Flex.",
+      initialValue: "none",
+      options: {
+        list: [
+          { title: "None", value: "none" },
+          { title: "Dr. Flex: Toggle appointments", value: "drFlexToggleAppointments" },
+        ],
+        layout: "radio",
+      },
+    }),
   ],
 });

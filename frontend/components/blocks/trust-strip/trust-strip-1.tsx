@@ -1,11 +1,18 @@
 import SectionContainer from "@/components/ui/section-container";
-import { PAGE_QUERY_RESULT } from "@/sanity.types";
 import { RotateCcw, Shield, Star, Truck } from "lucide-react";
 
-type TrustStrip1Props = Extract<
-  NonNullable<NonNullable<PAGE_QUERY_RESULT>["blocks"]>[number],
-  { _type: "trust-strip-1" }
->;
+type TrustStrip1Props = {
+  padding?: any;
+  colorVariant?: any;
+  items?:
+    | Array<{
+        _key?: string;
+        icon?: string | null;
+        title?: string | null;
+        description?: string | null;
+      }>
+    | null;
+};
 
 const iconMap = {
   truck: Truck,

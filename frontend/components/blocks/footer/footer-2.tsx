@@ -1,14 +1,31 @@
 import Link from "next/link";
 
-import { PAGE_QUERY_RESULT } from "@/sanity.types";
 import PortableTextRenderer from "@/components/portable-text-renderer";
-import { Button } from "@/components/ui/button";
 import SectionContainer from "@/components/ui/section-container";
+import ActionLinkButton from "@/components/blocks/shared/action-link-button";
 
-type Footer2Props = Extract<
-  NonNullable<NonNullable<PAGE_QUERY_RESULT>["blocks"]>[number],
-  { _type: "footer-2" }
->;
+type Footer2Props = {
+  padding?: any;
+  colorVariant?: any;
+  title?: string | null;
+  body?: any;
+  links?:
+    | Array<{
+        _key?: string;
+        title?: string | null;
+        href?: string | null;
+        target?: boolean | null;
+        buttonVariant?: any;
+      }>
+    | null;
+  legalLinks?:
+    | Array<{
+        _key?: string;
+        title?: string | null;
+        href?: string | null;
+      }>
+    | null;
+};
 
 export default function Footer2({
   padding,
@@ -29,15 +46,13 @@ export default function Footer2({
           {links && links.length > 0 && (
             <div className="flex flex-wrap gap-3">
               {links.map((link) => (
-                <Button key={link._key} variant={link.buttonVariant} asChild>
-                  <Link
-                    href={link.href || "#"}
-                    target={link.target ? "_blank" : undefined}
-                    rel={link.target ? "noopener noreferrer" : undefined}
-                  >
-                    {link.title}
-                  </Link>
-                </Button>
+                <ActionLinkButton
+                  key={link._key}
+                  title={link.title}
+                  href={link.href}
+                  target={link.target}
+                  variant={link.buttonVariant}
+                />
               ))}
             </div>
           )}

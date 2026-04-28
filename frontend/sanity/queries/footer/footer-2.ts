@@ -18,6 +18,7 @@ export const footer2Query = groq`
       ),
       target,
       buttonVariant,
+      action,
     },
     legalLinks[]{
       _key,

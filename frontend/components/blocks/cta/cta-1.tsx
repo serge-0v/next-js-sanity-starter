@@ -1,9 +1,8 @@
 import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
 import SectionContainer from "@/components/ui/section-container";
-import Link from "next/link";
 import PortableTextRenderer from "@/components/portable-text-renderer";
 import { PAGE_QUERY_RESULT } from "@/sanity.types";
+import ActionLinkButton from "@/components/blocks/shared/action-link-button";
 
 type Cta1Props = Extract<
   NonNullable<NonNullable<PAGE_QUERY_RESULT>["blocks"]>[number],
@@ -55,15 +54,13 @@ export default function Cta1({
             {links &&
               links.length > 0 &&
               links.map((link) => (
-                <Button key={link.title} variant={link?.buttonVariant} asChild>
-                  <Link
-                    href={link.href || "#"}
-                    target={link.target ? "_blank" : undefined}
-                    rel={link.target ? "noopener" : undefined}
-                  >
-                    {link.title}
-                  </Link>
-                </Button>
+                <ActionLinkButton
+                  key={link._key ?? link.title}
+                  title={link.title}
+                  href={link.href}
+                  target={link.target}
+                  variant={link.buttonVariant}
+                />
               ))}
           </div>
         )}

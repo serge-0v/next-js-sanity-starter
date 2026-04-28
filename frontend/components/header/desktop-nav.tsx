@@ -1,7 +1,6 @@
-import Link from "next/link";
-import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { NAVIGATION_QUERY_RESULT } from "@/sanity.types";
+import ActionLinkButton from "@/components/blocks/shared/action-link-button";
 
 type SanityLink = NonNullable<NAVIGATION_QUERY_RESULT[0]["links"]>[number];
 
@@ -13,21 +12,18 @@ export default function DesktopNav({
   return (
     <div className="hidden xl:flex items-center gap-7 text-primary">
       {navigation[0]?.links?.map((navItem: SanityLink) => (
-        <Link
+        <ActionLinkButton
           key={navItem._key}
+          title={navItem.title}
           href={navItem.href || "#"}
-          target={navItem.target ? "_blank" : undefined}
-          rel={navItem.target ? "noopener noreferrer" : undefined}
+          target={navItem.target}
+          action={navItem.action}
+          variant={navItem.buttonVariant || "default"}
           className={cn(
-            buttonVariants({
-              variant: navItem.buttonVariant || "default",
-            }),
             navItem.buttonVariant === "ghost" &&
               "transition-colors hover:text-foreground/80 text-foreground/60 text-sm p-0 h-auto hover:bg-transparent",
           )}
-        >
-          {navItem.title}
-        </Link>
+        />
       ))}
     </div>
   );

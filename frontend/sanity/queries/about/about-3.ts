@@ -23,6 +23,7 @@ export const about3Query = groq`
       ),
       target,
       buttonVariant,
+      action,
     },
   }
 `;

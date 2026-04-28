@@ -1,10 +1,9 @@
 import { cn } from "@/lib/utils";
 import PortableTextRenderer from "@/components/portable-text-renderer";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
 import TagLine from "@/components/ui/tag-line";
 import { createElement } from "react";
 import { PAGE_QUERY_RESULT } from "@/sanity.types";
+import ActionLinkButton from "@/components/blocks/shared/action-link-button";
 
 type Block = NonNullable<NonNullable<PAGE_QUERY_RESULT>["blocks"]>[number];
 type SplitRow = Extract<Block, { _type: "split-row" }>;
@@ -51,21 +50,16 @@ export default function SplitContent({
             title,
           )}
         {body && <PortableTextRenderer value={body} />}
-        {link?.href && (
+        {link?.title && (
           <div className="flex flex-col">
-            <Button
+            <ActionLinkButton
               className="mt-2"
-              variant={link?.buttonVariant}
+              variant={link.buttonVariant}
               size="lg"
-              asChild
-            >
-              <Link
-                href={link.href}
-                target={link.target ? "_blank" : undefined}
-              >
-                {link.title}
-              </Link>
-            </Button>
+              title={link.title}
+              href={link.href}
+              target={link.target}
+            />
           </div>
         )}
       </div>
